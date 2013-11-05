@@ -1,8 +1,9 @@
 {
   "manifest_version": 2,
 
-  "name": "Pluck ID",
-  "description": "This extension copies the ID of the selecte element to the clipboard.",
+  "name": "Capy Capture",
+  "description": "C
+  reates the Capybara statement to fill in the selected element.",
   "version": "1.0",
 
   "content_scripts": [
