@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+
+  "name": "Pluck ID",
+  "description": "This extension copies the ID of the selecte element to the clipboard.",
+  "version": "1.0",
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "web_accessible_resources": ["jquery-1.10.2.min.map" ],
+      "js": ["jquery-1.10.2.js", "pluckid.js"]
+    }
+  ]
+}
