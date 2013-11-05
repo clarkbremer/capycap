@@ -10,7 +10,7 @@
     {
       "matches": ["<all_urls>"],
       "web_accessible_resources": ["jquery-1.10.2.min.map" ],
-      "js": ["jquery-1.10.2.js", "pluckid.js"]
+      "js": ["jquery-1.10.2.js", "capycap.js"]
     }
   ]
 }
