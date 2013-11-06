@@ -2,8 +2,7 @@
   "manifest_version": 2,
 
   "name": "Capy Capture",
-  "description": "C
-  reates the Capybara statement to fill in the selected element.",
+  "description": "Creates the Capybara statement to fill in the selected element.",
   "version": "1.0",
 
   "content_scripts": [
