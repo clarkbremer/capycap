@@ -3,14 +3,43 @@ function copyToClipboard (text) {
   window.prompt ("Copy to clipboard: Ctrl+C, Enter", text);
 }
 
-function initContentScript() {
+function copyAllToClipboard() {
+  var form_id = $('form').attr('id');
 
+  var copyToClipboardText = "";
+  $('#' + form_id + " *").filter(':input').each(function(){
+
+      // do not worry about diabled fields skip them
+      if (!$('#' + this.id).is(':disabled')) {
+        if (this.type == 'text' && this.value != '') {
+            copyToClipboardText += "fill_in '" + this.id + "', :with => '" + this.value + "'" + "\n";
+        };
+
+        if (this.type == 'radio') {
+            copyToClipboardText += "choose '" + this.id + "'" + "\n";
+        };
+
+        if (this.type == 'checkbox') {
+            if ($('#' + this.id).is(':checked')) {
+                copyToClipboardText += "check '" + this.id + "'" + "\n";
+            } else {
+                copyToClipboardText += "uncheck '" + this.id + "'" + "\n";
+            }
+        };
+      }
+  });
+
+  console.log(copyToClipboardText);
+  alert('Check your console for all the output');
+}
+
+function initContentScript() {
   document.addEventListener('mousedown', function(evt) {
     // alert("botton down");
     if (event.altKey){
         var el = event.target;
-        if (event.shiftKey){
-            if (el.nodeName == "INPUT"){
+        if (event.shiftKey) {
+            if (el.nodeName == "INPUT") {
                 if (el.type == 'text'){
                     //console.log("fill_in '"+el.id+"', :with => '"+el.value+"'");
                     copyToClipboard("fill_in '"+el.id+"', :with => '"+el.value+"'");
@@ -28,9 +57,15 @@ function initContentScript() {
                         copyToClipboard("uncheck '"+el.id+"'");
                     }
                 };
-            };
+            } else {
+              copyAllToClipboard();
+            }
         }else{
-            copyToClipboard(el.id)
+            if (el.nodeName == "INPUT") {
+              copyToClipboard(el.id);
+            } else {
+              copyAllToClipboard();
+            }
         };
     };  
   }, false);
