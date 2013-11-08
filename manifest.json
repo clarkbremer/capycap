@@ -5,6 +5,13 @@
   "description": "Creates the Capybara statement to fill in the selected element.",
   "version": "1.0",
 
+  "permissions": ["contextMenus"],
+
+  "background": {
+    "persistent": false,
+    "scripts": ["menu.js"]
+  },
+
   "content_scripts": [
     {
       "matches": ["<all_urls>"],

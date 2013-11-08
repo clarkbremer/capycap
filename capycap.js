@@ -3,6 +3,7 @@ function copyToClipboard (text) {
   window.prompt ("Copy to clipboard: Ctrl+C, Enter", text);
 }
 
+
 function copyAllToClipboard() {
   var form_id = $('form').attr('id');
 
@@ -68,6 +69,17 @@ function initContentScript() {
         };
     };  
   }, false);
+  
+  chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+      console.log(sender.tab ?
+                "from a content script:" + sender.tab.url :
+                "from the extension");
+      if (request.cmd == "scrape"){
+        copyAllToClipboard();
+      }
+  });
+
 }
 
 initContentScript();
