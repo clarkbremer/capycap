@@ -4,13 +4,13 @@
 
 // The onClicked callback function.
 function onClickHandler(info, tab) {
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-  chrome.tabs.sendMessage(tabs[0].id, {cmd: "scrape"}, function(response) {
-    console.log(response.farewell);
-  });
+  // chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+  //   chrome.tabs.sendMessage(tabs[0].id, {cmd: "scrape"});
+  //   alert("Sent message to tab ID: "+tabs[0].id);
 
-});
-
+  // });
+  chrome.tabs.sendMessage(tab.id, {cmd: "scrape"});
+ 
   console.log("item " + info.menuItemId + " was clicked");
   console.log("info: " + JSON.stringify(info));
   console.log("tab: " + JSON.stringify(tab));
