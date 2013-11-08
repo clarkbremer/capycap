@@ -8,14 +8,13 @@ function copyAllToClipboard() {
 
   var copyToClipboardText = "";
   $('#' + form_id + " *").filter(':input').each(function(){
-
       // do not worry about diabled fields skip them
       if (!$('#' + this.id).is(':disabled')) {
         if (this.type == 'text' && this.value != '') {
             copyToClipboardText += "fill_in '" + this.id + "', :with => '" + this.value + "'" + "\n";
         };
 
-        if (this.type == 'radio') {
+        if (this.type == 'radio' && $('#' + this.id).is(':checked')) {
             copyToClipboardText += "choose '" + this.id + "'" + "\n";
         };
 
