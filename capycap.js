@@ -26,6 +26,12 @@ function copyAllToClipboard() {
                 copyToClipboardText += "uncheck '" + this.id + "'" + "\n";
             }
         };
+
+        if (this.type == 'select-one') {
+          if ($('#' + this.id).val() != '') {
+            copyToClipboardText += "select('" + $('#' + this.id + ' option:selected').text() + "', :from => '" + this.id + "')" + "\n";
+          }
+        }
       }
   });
 
